@@ -5,6 +5,8 @@
  */
 package dataTransfer;
 
+import java.sql.Blob;
+
 /**
  *
  * @author Kendal Howse
@@ -17,6 +19,7 @@ public class Profile {
     private String email;
     private String password;
     private String filename;
+    private Blob blob;
     
     public Profile(){
         this(0, "", "", "", "", "");
@@ -29,6 +32,15 @@ public class Profile {
         this.email = email;
         this.password = password;
         this.filename = filename;
+    }
+    
+    public Profile(int id, String firstName, String lastName, String email, String password, Blob blob) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.blob= blob;
     }
 
     public int getId() {
@@ -77,6 +89,14 @@ public class Profile {
 
     public void setProfilePicture(String profilePicture) {
         this.filename = profilePicture;
+    }
+    
+    public Blob getProfilePictureBlob() {
+        return this.blob;
+    }
+    
+    public void setProfilePictureBlob(Blob blob) {
+        this.blob = blob;
     }
     
 }
