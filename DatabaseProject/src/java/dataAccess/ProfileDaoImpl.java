@@ -39,9 +39,9 @@ public class ProfileDaoImpl implements ProfileDao {
         catch(SQLException e){
             System.out.print(e.getMessage());
         } 
-        catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        //catch (FileNotFoundException e) {
+            //System.out.println(e.getMessage());
+        //}
         finally{
             try{ 
                 this.dataSource.closeConnection();
