@@ -23,7 +23,7 @@
         
         <div>
             <%
-                out.print("This java code will appear in the html <div> tag!");
+                out.print("This java code will appear in the html div tag!");
             %>
         </div>
         
