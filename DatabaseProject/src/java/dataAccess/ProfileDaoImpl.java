@@ -30,24 +30,22 @@ public class ProfileDaoImpl implements ProfileDao {
             if(connection == null || connection.isClosed()) {
                 System.out.println("Cannot insert profile, no connection or connection closed");
             }
-            FileInputStream fis = new FileInputStream(new File(profile.getProfilePicture()));
             pstmt = connection.prepareStatement(
                         "INSERT INTO sample_user(id, fname, lname, email, password, picture) " +
-                        "VALUES(?, ?, ?, ?, ?, ?)");
-            pstmt.setInt(1, profile.getId());
-            pstmt.setString(2, profile.getFirstName());
-            pstmt.setString(3, profile.getLastName());
-            pstmt.setString(4, profile.getEmail());
-            pstmt.setString(5, profile.getPassword());
-            pstmt.setBinaryStream(6, fis);
+                        "VALUES(id.nextval, ?, ?, ?, ?, ?)");
+            pstmt.setString(1, profile.getFirstName());
+            pstmt.setString(2, profile.getLastName());
+            pstmt.setString(3, profile.getEmail());
+            pstmt.setString(4, profile.getPassword());
+            pstmt.setBlob(5, profile.getInputStream());
             pstmt.executeUpdate();
         }
         catch(SQLException e){
             System.out.print(e.getMessage());
         } 
-        catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+//        catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
         finally{
             try{ 
                 this.dataSource.closeConnection();

@@ -5,19 +5,24 @@
  */
 package view;
 
+import dataAccess.ProfileDaoImpl;
+import dataTransfer.Profile;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.http.Part;
+import javax.servlet.annotation.MultipartConfig;
 
 /**
  *
  * @author 
  */
-@WebServlet(name = "OnFormCompletion", urlPatterns = {"/OnFormCompletion"})
+
+@MultipartConfig(maxFileSize=16177216)
+//@MultipartConfig(location="/tmp", fileSizeThreshold=1048576, maxFileSize=20848820, maxRequestSize=418018841)
 public class OnFormCompletion extends HttpServlet {
 
     /**
@@ -35,12 +40,27 @@ public class OnFormCompletion extends HttpServlet {
         
         // when user clicks 'submit' on form in formpage.html, this method will execute
         
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         
+        Part filePart = request.getPart("image1");
+        InputStream fileContent = filePart.getInputStream();
         
+        Profile profile = new Profile();
+        
+        profile.setFirstName(fname);
+        profile.setLastName(lname);
+        profile.setEmail(email);
+        profile.setPassword(password);
+        profile.setInputStream(fileContent);
+        
+        ProfileDaoImpl dao = new ProfileDaoImpl();
+        dao.insertProfile(profile);
         
         // These lines of code redirect user to viewProfile.jsp
-        RequestDispatcher dispatcher = request.getRequestDispatcher("viewProfile.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("viewProfile.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
