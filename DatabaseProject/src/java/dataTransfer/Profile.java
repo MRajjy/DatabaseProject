@@ -5,6 +5,7 @@
  */
 package dataTransfer;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 /**
@@ -20,6 +21,7 @@ public class Profile {
     private String password;
     private String filename;
     private Blob blob;
+    private InputStream inputStream;
     
     public Profile(){
         this(0, "", "", "", "", "");
@@ -97,6 +99,14 @@ public class Profile {
     
     public void setProfilePictureBlob(Blob blob) {
         this.blob = blob;
+    }
+    
+    public InputStream getInputStream() {
+        return this.inputStream;
+    }
+    
+    public void setInputStream(InputStream is) {
+        this.inputStream = is;
     }
     
 }

@@ -12,19 +12,13 @@
         <title>View Profile</title>
     </head>
     <body>
-        
-        <%// use blocks like this to write Java code in HTML (hint: jsp stands for Java Servlet Page!%>
-        
-        <%
-        
-            // You can also write blocks like this!
-        
-        %>
-        
         <div>
             <%
-                out.print("This java code will appear in the html div tag!");
+                out.print("Insertion was successful.");
             %>
+        </div>
+        <div>
+            <a href="formpage.html">Back to form</a>
         </div>
         
     </body>
