@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/DatabaseProject">
+    <Resource name="jdbc/DatabaseProject" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:orcl"
+              username="cst8276" password="8276"
+              maxTotal="100" maxIdle="30" maxWaitMillis="1000"
+    ></Resource>
+
+</Context>
+
